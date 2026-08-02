@@ -427,8 +427,8 @@ function dtreeRender(){
     return;
   }
   // result
-  const q=last=="gas"?DTREE.q2:DTREE.q1;
-  const r=q.results[last]||q.results.gas;
+  const q = dtreePath.length >= 2 ? DTREE.q2 : DTREE.q1;
+  const r = q.results[last] || q.results.gas;
   stage.innerHTML='<div class="dtree-result"><h4>'+r.title+'</h4><ul style="margin-left:20px">'+
     r.score.split("|").map(t=>"<li>"+t.trim()+"</li>").join("")+'</ul><p style="margin-top:8px">'+r.text+'</p>'+
     '<button class="dtree-restart" onclick="dtreeReset()">🔄 重新挑戰</button></div>';
