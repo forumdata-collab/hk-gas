@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="香港煤氣足跡 1862–2026：從第一盞煤氣燈到智慧能源城市——STEAM 跨學科教育展館，適合小學至中學展示。">
+<meta property="og:title" content="香港煤氣足跡 1862–2026｜STEAM 教育展館">
+<meta property="og:description" content="從第一盞煤氣燈到智慧能源城市：虛擬展館、能源演化地圖、工程師任務、科學實驗室與學習徽章。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://forumdata-collab.github.io/hk-gas/">
+<meta property="og:image" content="https://img.hermesagent.de5.net/hk-gas/images/tg_gaslamp_1885.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <title>香港煤氣足跡 1862–2026｜STEAM 教育展館</title>
 <style>
 :root{
@@ -108,18 +114,61 @@ footer .credit{margin-top:10px;font-size:12px}
 #backToTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--paper2);border:2px solid var(--gold);font-size:19px;cursor:pointer;display:none;z-index:200;font-family:inherit}
 #backToTop.show{display:block}
 
-@media(max-width:800px){
-  .rooms,.map,.game-btns,.gallery{grid-template-columns:1fr}
+/* ===== 閱讀進度條 ===== */
+#progressBar{position:fixed;top:0;left:0;height:4px;background:var(--gold);z-index:300;width:0%}
+.explore-btn{display:inline-block;margin-top:22px;padding:14px 36px;background:var(--ink);color:var(--paper2);text-decoration:none;font-size:17px;border:2px solid var(--ink);box-shadow:5px 5px var(--shadow);transition:transform .15s;font-family:inherit}
+.explore-btn:hover{transform:translateY(-3px);background:#0d2b47}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.92);z-index:400;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out}
+#lightbox img{max-width:92vw;max-height:78vh;border:3px solid var(--gold)}
+#lightbox .lb-cap{color:#eee;margin-top:12px;font-size:14px;max-width:700px;text-align:center;padding:0 16px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.dtree-question{margin:14px 0;font-size:16px;font-weight:700}
+.dtree-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dtree-opts button{font-family:inherit;font-size:15px;padding:16px;background:var(--ink);color:var(--paper2);border:none;cursor:pointer;border-radius:2px;box-shadow:4px 4px var(--shadow);transition:transform .15s}
+.dtree-opts button:hover{transform:translateY(-2px)}
+.dtree-path{font-size:13px;color:var(--ink-dim);margin-bottom:10px}
+.dtree-result{background:var(--paper2);border:2px solid var(--ink);padding:18px;margin-top:14px;box-shadow:4px 4px var(--shadow)}
+.dtree-result h4{margin-bottom:6px}
+.dtree-restart{margin-top:12px;font-family:inherit;padding:8px 20px;background:var(--paper);border:2px solid var(--ink);cursor:pointer;color:var(--ink);font-size:14px}
+.badge-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.badge-item{display:flex;gap:14px;align-items:flex-start;border:2px solid var(--ink);background:var(--paper2);padding:16px;box-shadow:4px 4px var(--shadow);opacity:0.45;filter:grayscale(0.8);transition:all .4s}
+.badge-item.unlocked{opacity:1;filter:none}
+.badge-item .b-icon{font-size:34px}
+.badge-item h4{margin-bottom:4px}
+.badge-item p{font-size:12.5px;color:var(--ink-dim)}
+.badge-item .b-status{font-size:11px;margin-top:6px;display:inline-block;padding:2px 10px;border-radius:10px}
+.badge-item.locked .b-status{background:#e8dfd0;color:#8a7f6a}
+.badge-item.unlocked .b-status{background:var(--gold);color:#3a2f0a}
+.badge-progress{font-size:14px;margin-bottom:12px;font-weight:700}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden}
+.confetti-piece{position:absolute;top:-12px;width:10px;height:14px;animation:cf-fall linear forwards}
+@keyframes cf-fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.report-card{background:var(--paper2);border:2px solid var(--ink);padding:18px;margin-top:14px;box-shadow:4px 4px var(--shadow);font-size:14px}
+.report-card h4{border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+.report-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #d7c8ae}
+.report-row b{color:var(--ink)}
+.sim-panel{display:grid;grid-template-columns:1fr 220px;gap:16px;margin-top:16px;align-items:start}
+.sim-chart{background:var(--paper);border:2px solid var(--ink);padding:10px}
+.sim-chart svg{width:100%;height:auto}
+.thermo{background:var(--paper);border:2px solid var(--ink);padding:14px;text-align:center}
+.thermo .t-bar{width:36px;height:180px;border:2px solid var(--ink);margin:10px auto;position:relative;overflow:hidden;background:#e8dfd0}
+.thermo .t-fill{position:absolute;bottom:0;left:0;right:0;height:0%;background:linear-gradient(180deg,#d5ae4c,#b33a3a);transition:height 1.2s ease}
+.thermo .t-val{font-size:20px;font-weight:800}
+.thermo .t-label{font-size:12px;color:var(--ink-dim)}
+@media(max-width:800px){.rooms,.map,.game-btns,.gallery{grid-template-columns:1fr}
   .grid{grid-template-columns:repeat(2,1fr)}
   .gallery .wide{grid-column:span 1}
   h1{font-size:34px;letter-spacing:5px}
   .era-facts{grid-template-columns:1fr}
   .nav{scroll-padding-top:0}
-}
+  .sim-panel{grid-template-columns:1fr}.dtree-opts{grid-template-columns:1fr}.badge-list{grid-template-columns:1fr}}
 @media print{.nav,#backToTop,.kofi-bar{display:none}}
 </style>
 </head>
 <body>
+<div id="progressBar"></div>
 
 <nav class="nav">
   <a href="#museum">虛擬展館</a>
@@ -137,11 +186,12 @@ footer .credit{margin-top:10px;font-size:12px}
   <h1>香港煤氣足跡</h1>
   <div class="sub-title">1862 — 2026</div>
   <p class="tagline">從第一盞煤氣燈，到智慧能源城市。一盞煤氣燈，點亮香港現代城市的起點。</p>
+  <a class="explore-btn" href="#museum">🔍 開始探索 ↓</a>
 </header>
 
 <!-- ==================== 虛擬展館 ==================== -->
 <section id="museum">
-  <h2 class="section-title"><span class="badge">展館</span>虛擬展館入口</h2>
+  <h2 class="section-title">🕰 虛擬展館入口</h2>
   <div class="museum-card">
     <p>歡迎進入香港能源歷史探索館。選擇一個年代，展開煤氣與香港城市發展嘅故事：</p>
     <div class="rooms">
@@ -176,25 +226,25 @@ footer .credit{margin-top:10px;font-size:12px}
 <section id="gallery">
   <h2 class="section-title"><span class="badge">圖片</span>歷史圖片廊</h2>
   <div class="gallery">
-    <figure>
+    <figure class="reveal" onclick="openLightbox(this)">
       <img src="https://img.hermesagent.de5.net/hk-gas/images/tg_street_1880.jpg" alt="1880 年代中環皇后大道" loading="lazy">
-      <figcaption><b>1880 年中環皇后大道</b>煤氣街燈照亮維多利亞城嘅街道，中環成為當時最先進嘅現代化市區。</figcaption>
+      <figcaption><b>1880 年中環皇后大道</b>煤氣街燈照亮維多利亞城嘅街道，中環成為當時最先進嘅現代化市區。<span style="display:inline-block;background:var(--ink);color:var(--paper2);font-size:11px;padding:1px 8px;margin-top:6px">📅 1880</span></figcaption>
     </figure>
-    <figure>
+    <figure class="reveal" onclick="openLightbox(this)">
       <img src="https://img.hermesagent.de5.net/hk-gas/images/tg_avenue_lamp.jpg" alt="林蔭大道上的煤氣街燈" loading="lazy">
-      <figcaption><b>林蔭大道與煤氣街燈</b>1892 年煤氣服務伸延至彌敦道，九龍半島亦亮起煤氣燈。</figcaption>
+      <figcaption><b>林蔭大道與煤氣街燈</b>1892 年煤氣服務伸延至彌敦道，九龍半島亦亮起煤氣燈。<span style="display:inline-block;background:var(--ink);color:var(--paper2);font-size:11px;padding:1px 8px;margin-top:6px">📅 1892</span></figcaption>
     </figure>
-    <figure>
+    <figure class="reveal" onclick="openLightbox(this)">
       <img src="https://img.hermesagent.de5.net/hk-gas/images/tg_saiyingpun_1890.jpg" alt="1890 年代西營盤繁華盛景" loading="lazy">
-      <figcaption><b>1890 年代西營盤</b>煤氣照明推動夜間經濟，大街小巷越夜越旺。</figcaption>
+      <figcaption><b>1890 年代西營盤</b>煤氣照明推動夜間經濟，大街小巷越夜越旺。<span style="display:inline-block;background:var(--ink);color:var(--paper2);font-size:11px;padding:1px 8px;margin-top:6px">📅 1890s</span></figcaption>
     </figure>
-    <figure class="wide">
+    <figure class="reveal wide" onclick="openLightbox(this)">
       <img src="https://img.hermesagent.de5.net/hk-gas/images/tg_gasholder.jpg" alt="煤氣儲氣鼓" loading="lazy">
-      <figcaption><b>煤氣儲氣鼓</b>圓形鋼架儲氣鼓係城市能源基建嘅地標——儲存、調壓，確保煤氣穩定供應每一戶。</figcaption>
+      <figcaption><b>煤氣儲氣鼓</b>圓形鋼架儲氣鼓係城市能源基建嘅地標——儲存、調壓，確保煤氣穩定供應每一戶。<span style="display:inline-block;background:var(--ink);color:var(--paper2);font-size:11px;padding:1px 8px;margin-top:6px">📅 20 世紀初</span></figcaption>
     </figure>
-    <figure>
+    <figure class="reveal" onclick="openLightbox(this)">
       <img src="https://img.hermesagent.de5.net/hk-gas/images/tg_works_production.jpg" alt="煤氣廠生產設施" loading="lazy">
-      <figcaption><b>煤氣廠生產設施</b>高聳煙囪同縱橫管道——煤氣嘅製造、淨化同儲存，全部喺呢度完成。</figcaption>
+      <figcaption><b>煤氣廠生產設施</b>高聳煙囪同縱橫管道——煤氣嘅製造、淨化同儲存，全部喺呢度完成。<span style="display:inline-block;background:var(--ink);color:var(--paper2);font-size:11px;padding:1px 8px;margin-top:6px">📅 20 世紀中</span></figcaption>
     </figure>
   </div>
 </section>
@@ -203,13 +253,9 @@ footer .credit{margin-top:10px;font-size:12px}
 <section id="game">
   <h2 class="section-title"><span class="badge">任務</span>城市工程師任務</h2>
   <div class="museum-card">
-    <p>你係「1862 香港城市工程師」——要為香港設計能源系統。選擇方案，睇吓你嘅決定會點影響城市：</p>
-    <div class="game-btns">
-      <button onclick="game('wood')">🔥 柴火</button>
-      <button onclick="game('gas')">💡 煤氣</button>
-      <button onclick="game('ai')">🤖 AI 智慧能源</button>
-    </div>
-    <div id="score"></div>
+    <p>你係「1862 香港城市工程師」——用決策樹完成任務，睇吓你嘅選擇點影響歷史：</p>
+    <div class="dtree-path" id="dtreePath"></div>
+    <div id="dtreeStage"></div>
   </div>
 </section>
 
@@ -238,19 +284,22 @@ footer .credit{margin-top:10px;font-size:12px}
 
     <!-- 火焰溫度探索器 -->
     <div class="lab-experiment" id="flame">
-      <p><b>拖動滑桿</b>選擇燃料，睇火焰顏色同溫度變化：</p>
+      <p><b>拖動滑桿</b>選擇燃料，睇水溫上升、加熱效率曲線同碳排放：</p>
       <div class="slider-wrap">
         <input type="range" id="flameSlider" min="0" max="4" value="0" oninput="updateFlame(this.value)">
       </div>
-      <div class="flame-display" id="flameDisplay">
-        <div style="font-size:72px" id="flameEmoji">🕯️</div>
-        <div class="temp" id="flameTemp">~400°C</div>
-        <div class="fuel-name" id="flameName">柴火</div>
-        <div class="fact" id="flameFact">柴火火焰呈橙紅色，溫度約 400–600°C。1862 年之前，香港人靠燒柴照明同煮食。</div>
+      <div class="sim-panel">
+        <div class="sim-chart"><svg viewBox="0 0 400 200" id="heatChart"></svg></div>
+        <div class="thermo">
+          <div class="t-label">水溫模擬</div>
+          <div class="t-bar"><div class="t-fill" id="tFill"></div></div>
+          <div class="t-val" id="tVal">20°C</div>
+        </div>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-dim);margin-top:4px">
         <span>🕯️ 柴火</span><span>💡 煤氣</span><span>🔵 酒精燈</span><span>⚡ 電磁爐</span><span>💨 氫能</span>
       </div>
+      <div class="report-card" id="flameReport" style="display:none"></div>
     </div>
   </div>
 </section>
@@ -270,11 +319,25 @@ footer .credit{margin-top:10px;font-size:12px}
 <section id="badge">
   <h2 class="section-title"><span class="badge">徽章</span>學習徽章</h2>
   <div class="badge">
-    完成展館探索，集齊三大徽章：
-    <br><b>🔥 能源探索家</b> —— 認識煤氣點樣改變城市
-    <br><b>🏙 城市工程師</b> —— 完成能源系統任務
-    <br><b>🌱 綠色未來設計師</b> —— 構想智慧能源城市藍圖
-    <br><b>🧪 科學實驗員</b> —— 完成實驗室挑戰
+    <p class="badge-progress" id="badgeProgress">🏅 已解鎖 0 / 4 個徽章</p>
+    <div class="badge-list" id="badgeList">
+      <div class="badge-item locked" id="bd-explorer">
+        <div class="b-icon">🔥</div>
+        <div><h4>能源探索家</h4><p>閱讀完 3 個年代故事（1862 / 1950 / 2026）</p><span class="b-status">🔒 未解鎖</span></div>
+      </div>
+      <div class="badge-item locked" id="bd-engineer">
+        <div class="b-icon">🏙</div>
+        <div><h4>城市工程師</h4><p>完成工程師任務嘅決策樹（選出正確歷史方案）</p><span class="b-status">🔒 未解鎖</span></div>
+      </div>
+      <div class="badge-item locked" id="bd-green">
+        <div class="b-icon">🌱</div>
+        <div><h4>綠色未來設計師</h4><p>喺實驗室比較碳排放，揀出最潔淨嘅能源</p><span class="b-status">🔒 未解鎖</span></div>
+      </div>
+      <div class="badge-item locked" id="bd-scientist">
+        <div class="b-icon">🧪</div>
+        <div><h4>科學實驗員</h4><p>完成煮水比賽，見證四種燃料加熱效率</p><span class="b-status">🔒 未解鎖</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -320,19 +383,65 @@ function showEra(y){
     '<p>'+e.text+'</p><p>'+e.text2+'</p>'+
     '<div class="era-facts">'+e.facts.map(f=>'<div><b>'+f[0]+'</b>'+f[1]+'</div>').join("")+'</div></div>';
   document.getElementById("display").scrollIntoView({behavior:"smooth",block:"nearest"});
+  // badge: 睇齊 3 個年代 -> 能源探索家
+  let seen=JSON.parse(localStorage.getItem("hk_gas_eras")||"[]");
+  if(seen.indexOf(y)===-1){seen.push(y);localStorage.setItem("hk_gas_eras",JSON.stringify(seen));}
+  if(seen.length>=3)unlockBadge("explorer");
 }
 
-/* ===== 工程師任務 ===== */
-const GAME={
-  wood:{verdict:"再思考：柴火效率低、煙塵多，城市好快烏煙瘴氣。",score:"能源效率 ★☆☆ | 城市安全 ★☆☆ | 發展影響 ★☆☆",detail:"柴火雖然易得，但燃燒效率低、產生大量煙塵，密集城市好難承受。"},
-  gas:{verdict:"🏅 正確！煤氣係當時最適合香港城市嘅選擇。",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",detail:"煤氣燈更光更穩定，街道安全提升；中央供氣網絡更為日後工業同家庭能源奠定基礎。"},
-  ai:{verdict:"🌱 未來方案！AI 智慧能源降低浪費，係明日嘅方向。",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",detail:"智能感應 + AI 調度可以實時平衡供應同需求，減少能源浪費——不過喺 1862 年，技術仲未出現。"}
+/* ===== 工程師任務 — 分支決策樹 ===== */
+const DTREE={
+  q1:{q:"1862 年，你係維多利亞城嘅工程師。城市夜晚漆黑，你要揀邊種照明能源？",
+    opts:[["wood","🔥 柴火","家家戶戶自己燒"],["gas","💡 煤氣","中央供氣 + 街燈"],["oil","🕯️ 油燈","簡單易用"]],
+    next:"q2", // 只有揀 gas 先有下一層
+    results:{
+      wood:{title:"❌ 煙塵籠罩",score:"能源效率 ★☆☆ | 城市安全 ★☆☆ | 發展影響 ★☆☆",
+        text:"柴火照明亮度低、煙塵大，密集城市好快烏煙瘴氣，火災風險高。歷史最終冇選擇呢條路。"},
+      oil:{title:"❌ 亮度不足",score:"能源效率 ★★☆ | 城市安全 ★★☆ | 發展影響 ★★☆",
+        text:"油燈雖然方便，但亮度有限、需要人手添油，大規模城市照明唔現實。"},
+      gas:{title:"✅ 選擇煤氣",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
+        text:"煤氣燈更光更穩定，街道安全提升——你嘅選擇同真實歷史一致！下一步：點樣供氣？"}}
+  },
+  q2:{q:"你決定用煤氣。但要點樣將煤氣送到每一支街燈？",
+    opts:[["pipes","🏗 中央管網","鋪設 24 公里地下管道，投資大但長遠"],["bottles","🧯 罐裝運送","簡單慳錢，但逐支燈送氣好麻煩"]],
+    results:{
+      pipes:{title:"🏆 歷史正確方案！",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
+        text:"1862 年煤氣公司就係用中央管網：開業資本 £35,000，24 公里管道 + 500 支街燈，奠定香港現代能源基建。"},
+      bottles:{title:"❌ 成本爆炸",score:"能源效率 ★★☆ | 城市安全 ★★☆ | 發展影響 ★★☆",
+        text:"罐裝運送逐支燈送氣，人工成本極高、危險又唔可靠。歷史最終揀咗中央管網——你獲得「城市工程師」徽章嘅條件就差一步！"}}
+  }
 };
-function game(x){
-  const g=GAME[x],s=document.getElementById("score");
-  s.style.display="block";
-  s.innerHTML='<div class="verdict">'+g.verdict+'</div><h4>城市影響評估</h4><ul>'+
-    g.score.split("|").map(t=>"<li>"+t.trim()+"</li>").join("")+'</ul><p style="margin-top:8px">'+g.detail+'</p>';
+let dtreePath=[];
+function dtreeRender(){
+  const stage=document.getElementById("dtreeStage");
+  document.getElementById("dtreePath").textContent=dtreePath.length?("🧭 路線："+dtreePath.join(" → ")):"🧭 開始任務";
+  if(!dtreePath.length){
+    stage.innerHTML='<div class="dtree-question">'+DTREE.q1.q+'</div><div class="dtree-opts">'+
+      DTREE.q1.opts.map(o=>'<button onclick="dtreePick(\''+o[0]+'\')">'+o[1]+'<br><span style="font-size:12px;opacity:.8">'+o[2]+'</span></button>').join("")+'</div>';
+    return;
+  }
+  const last=dtreePath[dtreePath.length-1];
+  if(last=="gas"&&dtreePath.length==1){
+    stage.innerHTML='<div class="dtree-question">'+DTREE.q2.q+'</div><div class="dtree-opts">'+
+      DTREE.q2.opts.map(o=>'<button onclick="dtreePick(\''+o[0]+'\')">'+o[1]+'<br><span style="font-size:12px;opacity:.8">'+o[2]+'</span></button>').join("")+'</div>';
+    return;
+  }
+  // result
+  const q=last=="gas"?DTREE.q2:DTREE.q1;
+  const r=q.results[last]||q.results.gas;
+  stage.innerHTML='<div class="dtree-result"><h4>'+r.title+'</h4><ul style="margin-left:20px">'+
+    r.score.split("|").map(t=>"<li>"+t.trim()+"</li>").join("")+'</ul><p style="margin-top:8px">'+r.text+'</p>'+
+    '<button class="dtree-restart" onclick="dtreeReset()">🔄 重新挑戰</button></div>';
+  // badge: 完成任務（無論對錯都算完成）
+  unlockBadge("engineer");
+}
+function dtreePick(opt){
+  dtreePath.push(opt);
+  dtreeRender();
+}
+function dtreeReset(){
+  dtreePath=[];
+  dtreeRender();
 }
 
 /* ===== STEM 實驗室 — 煮水比賽 ===== */
@@ -370,7 +479,17 @@ function startBoil(){
         let r=document.getElementById("boilResult");
         r.style.display="block";
         if(done===4){
-          r.innerHTML="🏁 完成！🏆 <b>氫能最快煮沸（2.5 分鐘）</b>，煤氣第二（5 分鐘）。效率越高，能源浪費越少——呢個就係點解煤氣取代柴火！";
+          // render report card
+          const F=[
+            {name:"🔥 柴火",time:"16:00",eff:"15%",co2:"高",color:"#8B4513"},
+            {name:"💡 煤氣",time:"5:00",eff:"65%",co2:"中",color:"#2272b0"},
+            {name:"⚡ 電磁爐",time:"3:30",eff:"90%",co2:"低",color:"#7c3aed"},
+            {name:"💨 氫能",time:"2:30",eff:"95%",co2:"零",color:"#16a34a"}
+          ];
+          r.innerHTML='<h4>🏁 煮水比賽結果</h4>'+F.map((f,i)=>
+            '<div class="report-row"><b style="color:'+f.color+'">'+f.name+'</b><span>🕐 '+f.time+' | 效率 '+f.eff+' | CO₂ '+f.co2+'</span></div>').join("")+
+            '<p style="margin-top:12px;font-weight:700">🏆 氫能最快煮沸（2.5 分鐘）、電磁爐次之（3.5 分鐘）。燃料效率越高 = 能源浪費越少——呢個就係煤氣取代柴火嘅原因！</p>';
+          unlockBadge("scientist");
           boilRunning=false;
           document.getElementById("boilStart").disabled=false;
         }return;}
@@ -380,28 +499,127 @@ function startBoil(){
   });
 }
 
-/* ===== STEM 實驗室 — 火焰溫度探索器 ===== */
+/* ===== STEM 實驗室 — 火焰/水溫模擬器 ===== */
 const FLAMES=[
-  {name:"柴火",temp:"~400–600°C",emoji:"🕯️",fact:"柴火火焰呈橙紅色，溫度約 400–600°C。1862 年之前，香港人靠燒柴照明同煮食。燃燒效率低、煙塵大。",bg:"linear-gradient(180deg,#2a1a0a,#8B4513,#d4650a)"},
-  {name:"煤氣",temp:"~800–1,000°C",emoji:"💡",fact:"煤氣火焰呈藍色，溫度約 800–1,000°C。1862 年煤氣入港，取代柴火成為城市主要能源。藍色火焰 = 充分燃燒 = 更乾淨高效。",bg:"linear-gradient(180deg,#0a1a2a,#1565c0,#42a5f5)"},
-  {name:"酒精燈",temp:"~800°C",emoji:"🔵",fact:"酒精燈火焰外焰溫度約 800°C，係實驗室常用加熱工具。火焰呈淡藍色，需要風檔保護。",bg:"linear-gradient(180deg,#0a1a2a,#1e88e5,#90caf9)"},
-  {name:"電磁爐",temp:"~600–800°C",emoji:"⚡",fact:"電磁爐加熱溫度約 600–800°C。利用電磁感應直接加熱鍋底，能源轉換效率高達 90%。",bg:"linear-gradient(180deg,#1a0a2a,#7c3aed,#c4b5fd)"},
-  {name:"氫能燃燒器",temp:"~2,000°C+",emoji:"💨",fact:"氫能燃燒器溫度可達 2,000°C 以上，火焰近乎無色。氫燃料只會產生水蒸氣，零碳排放——係未來城市能源嘅方向。",bg:"linear-gradient(180deg,#0a1a10,#16a34a,#86efac)"}
+  {name:"柴火",temp:500,boil:16,eff:"15%",co2:"高",emoji:"🕯️",fact:"柴火火焰呈橙紅色，溫度約 400–600°C。1862 年之前，香港人靠燒柴照明同煮食。燃燒效率低、煙塵大。",color:"#8B4513"},
+  {name:"煤氣",temp:900,boil:5,eff:"65%",co2:"中",emoji:"💡",fact:"煤氣火焰呈藍色，溫度約 800–1,000°C。1862 年煤氣入港，取代柴火成為城市主要能源。藍色火焰 = 充分燃燒 = 更乾淨高效。",color:"#2272b0"},
+  {name:"酒精燈",temp:800,boil:7,eff:"45%",co2:"中",emoji:"🔵",fact:"酒精燈火焰外焰溫度約 800°C，係實驗室常用加熱工具。火焰呈淡藍色，需要風檔保護。",color:"#1e88e5"},
+  {name:"電磁爐",temp:700,boil:3.5,eff:"90%",co2:"低",emoji:"⚡",fact:"電磁爐加熱溫度約 600–800°C。利用電磁感應直接加熱鍋底，能源轉換效率高達 90%。",color:"#7c3aed"},
+  {name:"氫能燃燒器",temp:2000,boil:2.5,eff:"95%",co2:"零",emoji:"💨",fact:"氫能燃燒器溫度可達 2,000°C 以上，火焰近乎無色。氫燃料只會產生水蒸氣，零碳排放——係未來城市能源嘅方向。",color:"#16a34a"}
 ];
+function drawHeatChart(){
+  const svg=document.getElementById("heatChart");
+  const W=400,H=200,padL=38,padB=26,padT=12,padR=10;
+  const maxT=16; // minutes
+  let s='<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(H-padB)+'" stroke="#12385b" stroke-width="1.5"/>'+
+        '<line x1="'+padL+'" y1="'+(H-padB)+'" x2="'+(W-padR)+'" y2="'+(H-padB)+'" stroke="#12385b" stroke-width="1.5"/>';
+  for(let t=0;t<=maxT;t+=4){
+    const x=padL+t/maxT*(W-padL-padR);
+    s+='<text x="'+x+'" y="'+(H-padB+14)+'" font-size="9" fill="#666" text-anchor="middle">'+t+'′</text>';
+  }
+  for(let tmp=20;tmp<=100;tmp+=20){
+    const y=H-padB-(tmp-20)/80*(H-padT-padB);
+    s+='<text x="'+padL-6+'" y="'+(y+3)+'" font-size="9" fill="#666" text-anchor="end">'+tmp+'°</text>';
+  }
+  s+='<text x="'+(W-padR)+'" y="'+(H-6)+'" font-size="10" fill="#666" text-anchor="end">時間（分鐘）</text>';
+  FLAMES.forEach((f,fi)=>{
+    const pts=[];
+    for(let t=0;t<=maxT;t+=0.25){
+      const tmp=Math.min(100,20+80*t/f.boil);
+      pts.push((padL+t/maxT*(W-padL-padR)).toFixed(1)+","+(H-padB-(tmp-20)/80*(H-padT-padB)).toFixed(1));
+    }
+    s+='<polyline points="'+pts.join(" ")+'" fill="none" stroke="'+f.color+'" stroke-width="'+(fi===0?"3":"1.5")+'" opacity="'+(fi===0?"1":"0.35")+'"/>';
+  });
+  svg.innerHTML=s;
+}
 function updateFlame(v){
   const f=FLAMES[v];
-  document.getElementById("flameEmoji").textContent=f.emoji;
-  document.getElementById("flameTemp").textContent=f.temp;
-  document.getElementById("flameName").textContent=f.name;
-  document.getElementById("flameFact").textContent=f.fact;
-  document.getElementById("flameDisplay").style.background=f.bg;
-  document.getElementById("flameDisplay").style.color=v<2?"#fff":(v<4?"#e8e8e8":"#fff");
+  // thermo animation
+  const fill=document.getElementById("tFill");
+  const val=document.getElementById("tVal");
+  fill.style.height="0%";
+  val.textContent="20°C";
+  setTimeout(()=>{fill.style.height="100%";val.textContent="100°C";},60);
+  // highlight chart
+  drawHeatChart();
+  const svg=document.getElementById("heatChart");
+  const polys=svg.querySelectorAll("polyline");
+  polys.forEach((p,i)=>{p.setAttribute("stroke-width",i==v?"3":"1.5");p.setAttribute("opacity",i==v?"1":"0.35");});
+  // report card
+  const rp=document.getElementById("flameReport");
+  rp.style.display="block";
+  rp.innerHTML='<h4>📋 實驗結果報告卡</h4>'+
+    '<div class="report-row"><b>'+f.emoji+' '+f.name+'</b><span>火焰 '+f.temp+'°C</span></div>'+
+    '<div class="report-row"><b>煮沸 1L 水</b><span>🕐 約 '+f.boil+' 分鐘</span></div>'+
+    '<div class="report-row"><b>能源效率</b><span>'+f.eff+'</span></div>'+
+    '<div class="report-row"><b>碳排放</b><span>'+f.co2+'</span></div>'+
+    '<p style="margin-top:10px;font-size:13px;color:var(--ink-dim)">'+f.fact+'</p>';
+  if(v==4)unlockBadge("green"); // 揀中零碳氫能
 }
 
 /* ===== 返回頂部 ===== */
 const btt=document.getElementById("backToTop");
 window.addEventListener("scroll",()=>{btt.classList.toggle("show",window.scrollY>600)},{passive:true});
 btt.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* ===== 徽章系統（LocalStorage）===== */
+const BADGES={explorer:"bd-explorer",engineer:"bd-engineer",green:"bd-green",scientist:"bd-scientist"};
+function getBadges(){try{return JSON.parse(localStorage.getItem("hk_gas_badges")||"{}");}catch(e){return{};}}
+function badgeCount(){const b=getBadges();return Object.keys(b).filter(k=>b[k]).length;}
+function renderBadges(){
+  const b=getBadges();
+  Object.keys(BADGES).forEach(k=>{
+    const el=document.getElementById(BADGES[k]);
+    if(b[k]){el.classList.remove("locked");el.classList.add("unlocked");el.querySelector(".b-status").textContent="✅ 已解鎖";}
+  });
+  document.getElementById("badgeProgress").textContent="🏅 已解鎖 "+badgeCount()+" / 4 個徽章";
+}
+function unlockBadge(id){
+  const b=getBadges();
+  if(!b[id]){b[id]=true;localStorage.setItem("hk_gas_badges",JSON.stringify(b));}
+  renderBadges();
+  confetti();
+}
+window.__badgeNew=unlockBadge;
+
+/* ===== Confetti ===== */
+function confetti(){
+  const c=document.createElement("div");c.id="confetti";document.body.appendChild(c);
+  const colors=["#d5ae4c","#12385b","#e74c3c","#27ae60","#8e44ad","#e67e22"];
+  for(let i=0;i<60;i++){
+    const p=document.createElement("div");p.className="confetti-piece";
+    p.style.left=Math.random()*100+"vw";
+    p.style.background=colors[i%colors.length];
+    p.style.animationDuration=(1.8+Math.random()*1.6)+"s";
+    p.style.animationDelay=(Math.random()*0.3)+"s";
+    c.appendChild(p);
+  }
+  setTimeout(()=>c.remove(),4000);
+}
+
+/* ===== 圖片 Lightbox ===== */
+const LBOX=document.createElement("div");LBOX.id="lightbox";document.body.appendChild(LBOX);
+function openLightbox(fig){
+  const img=fig.querySelector("img"),cap=fig.querySelector("figcaption");
+  LBOX.style.display="flex";
+  LBOX.innerHTML="<img src='"+img.src+"' alt='"+img.alt+"'><div class='lb-cap'>"+(cap?cap.textContent:"")+"</div>";
+}
+LBOX.addEventListener("click",()=>LBOX.style.display="none");
+document.addEventListener("keydown",e=>{if(e.key==="Escape")LBOX.style.display="none";});
+
+/* ===== 閱讀進度條 + scroll reveal ===== */
+const pbar=document.getElementById("progressBar");
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  pbar.style.width=(h>0?(window.scrollY/h*100):0)+"%";
+},{passive:true});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ===== 初始化 ===== */
+if(document.getElementById("dtreeStage"))dtreeRender();
+drawHeatChart();
+renderBadges();
 </script>
 </body>
 </html>
