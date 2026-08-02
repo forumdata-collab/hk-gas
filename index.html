@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="香港煤氣足跡 1862–2026：從第一盞煤氣燈到智慧能源城市——STEAM 跨學科教育展館，適合小學至中學展示。">
+<title>香港煤氣足跡 1862–2026｜STEAM 教育展館</title>
+<style>
+:root{
+  --paper:#f3ecdd; --paper2:#fffaf0; --ink:#12385b; --ink-dim:#2a5a8c;
+  --gold:#d5ae4c; --line:#12385b; --shadow:#d7c8ae;
+  --card-bg:rgba(255,250,240,0.92);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media(max-width:640px){html{scroll-padding-top:170px}}
+body{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;background:var(--paper);color:var(--ink);line-height:1.8}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* ===== 頂部導覽（sticky） ===== */
+.nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;background:rgba(243,236,221,0.95);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:100;backdrop-filter:blur(4px)}
+.nav a{padding:5px 13px;border-radius:20px;font-size:13.5px;text-decoration:none;background:var(--paper2);border:1px solid var(--ink);color:var(--ink);transition:all .2s}
+.nav a:hover{background:var(--ink);color:var(--paper2)}
+
+/* ===== 頁首 ===== */
+header{text-align:center;padding:56px 20px 40px;background:linear-gradient(180deg,#eee4d1,var(--paper));border-bottom:3px solid var(--ink)}
+header img{width:150px;margin-bottom:14px}
+h1{font-size:52px;letter-spacing:10px;font-weight:800;margin-bottom:6px}
+.sub-title{font-size:20px;color:var(--ink-dim);letter-spacing:4px;margin-bottom:14px}
+.tagline{font-size:15px;color:var(--ink-dim);max-width:640px;margin:0 auto}
+
+/* ===== 區段 ===== */
+section{max-width:1100px;margin:44px auto;padding:0 20px}
+.section-title{font-size:28px;margin-bottom:22px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.section-title .badge{background:var(--ink);color:var(--paper2);font-size:12px;padding:3px 12px;border-radius:4px;letter-spacing:2px}
+
+.museum-card{background:var(--card-bg);border:2.5px solid var(--line);padding:32px;box-shadow:8px 8px var(--shadow);border-radius:2px}
+
+/* ===== 展館入口 ===== */
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.rooms button{font-family:inherit;font-size:17px;padding:22px 12px;background:var(--ink);color:var(--paper2);border:none;cursor:pointer;border-radius:2px;box-shadow:5px 5px var(--shadow);transition:transform .15s}
+.rooms button:hover{transform:translateY(-3px);background:#0d2b47}
+.rooms button .era-year{display:block;font-size:26px;font-weight:800;letter-spacing:2px}
+#display{margin-top:24px;display:none}
+.era-panel{background:var(--paper2);border:2px solid var(--ink);padding:24px;box-shadow:4px 4px var(--shadow)}
+.era-panel h3{font-size:22px;margin-bottom:10px}
+.era-panel p{margin-bottom:10px}
+.era-panel img{width:100%;max-height:320px;object-fit:cover;border:2px solid var(--ink);margin:12px 0;display:block}
+.era-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.era-facts div{background:var(--paper);border:1.5px solid var(--ink);padding:10px;text-align:center;font-size:13.5px}
+.era-facts b{display:block;font-size:16px}
+
+/* ===== 演化地圖 ===== */
+.map{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.map .node{background:var(--card-bg);border:2px solid var(--ink);box-shadow:5px 5px var(--shadow);overflow:hidden}
+.map .node img{width:100%;height:150px;object-fit:cover;border-bottom:2px solid var(--ink);display:block}
+.map .node .node-body{padding:16px;text-align:center}
+.map .node h3{font-size:17px;margin-bottom:6px}
+.map .node p{font-size:13.5px;color:var(--ink-dim)}
+
+/* ===== 圖片廊 ===== */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gallery figure{background:var(--card-bg);border:2px solid var(--ink);box-shadow:5px 5px var(--shadow);margin:0}
+.gallery img{width:100%;height:190px;object-fit:cover;border-bottom:2px solid var(--ink);display:block}
+.gallery figcaption{padding:12px;font-size:13.5px;color:var(--ink-dim)}
+.gallery figcaption b{color:var(--ink);display:block;margin-bottom:4px}
+.gallery .wide{grid-column:span 2}
+
+/* ===== 任務 ===== */
+.game-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.game-btns button{font-family:inherit;font-size:17px;padding:18px;background:var(--ink);color:var(--paper2);border:none;cursor:pointer;border-radius:2px;transition:transform .15s}
+.game-btns button:hover{transform:translateY(-3px)}
+#score{display:none;background:var(--paper2);border:2px solid var(--ink);padding:20px;margin-top:6px;box-shadow:4px 4px var(--shadow)}
+#score h4{margin-bottom:8px}
+#score ul{margin-left:22px}
+#score .verdict{font-size:17px;font-weight:700;margin-bottom:8px}
+
+/* ===== STEM ===== */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid div{background:var(--card-bg);border:2px solid var(--ink);padding:18px;box-shadow:4px 4px var(--shadow);font-size:13.5px}
+.grid h3{font-size:16px;margin-bottom:6px;color:var(--ink)}
+
+/* ===== 徽章 ===== */
+.badge{background:var(--card-bg);border:2.5px solid var(--ink);padding:26px;box-shadow:8px 8px var(--shadow);font-size:15px}
+.badge b{color:var(--gold);font-size:18px}
+
+/* ===== footer ===== */
+footer{text-align:center;padding:36px 20px 10px;border-top:3px solid var(--ink);margin-top:50px;background:#eee4d1;font-size:13.5px;color:var(--ink-dim)}
+footer .credit{margin-top:10px;font-size:12px}
+.kofi-bar{text-align:center;padding-top:22px;margin-top:16px;border-top:1px solid var(--ink);padding-bottom:6px}
+.kofi-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:#ff5e5b;color:#fff !important;text-decoration:none;border-radius:8px;font-weight:600;font-size:15px;font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif}
+
+/* ===== 返回頂部 ===== */
+#backToTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--paper2);border:2px solid var(--gold);font-size:19px;cursor:pointer;display:none;z-index:200;font-family:inherit}
+#backToTop.show{display:block}
+
+@media(max-width:800px){
+  .rooms,.map,.game-btns,.gallery{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .gallery .wide{grid-column:span 1}
+  h1{font-size:34px;letter-spacing:5px}
+  .era-facts{grid-template-columns:1fr}
+  .nav{scroll-padding-top:0}
+}
+@media print{.nav,#backToTop,.kofi-bar{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#museum">虛擬展館</a>
+  <a href="#map">能源演化地圖</a>
+  <a href="#gallery">歷史圖片廊</a>
+  <a href="#game">工程師任務</a>
+  <a href="#stem">STEM 展示</a>
+  <a href="#badge">學習徽章</a>
+  <a href="#credits">資料來源</a>
+</nav>
+
+<header>
+  <img src="https://img.hermesagent.de5.net/hk-gas/images/gaslamp.svg" alt="煤氣燈標誌" loading="lazy">
+  <h1>香港煤氣足跡</h1>
+  <div class="sub-title">1862 — 2026</div>
+  <p class="tagline">從第一盞煤氣燈，到智慧能源城市。一盞煤氣燈，點亮香港現代城市的起點。</p>
+</header>
+
+<section id="museum">
+  <h2 class="section-title"><span class="badge">展館</span>虛擬展館入口</h2>
+  <div class="museum-card">
+    <p>歡迎進入香港能源歷史探索館。選擇一個年代，展開煤氣與香港城市發展嘅故事：</p>
+    <div class="rooms">
+      <button onclick="showEra('1862')"><span class="era-year">1862</span>煤氣燈年代</button>
+      <button onclick="showEra('1950')"><span class="era-year">1950</span>家庭能源革命</button>
+      <button onclick="showEra('2026')"><span class="era-year">2026</span>智慧能源城市</button>
+    </div>
+    <div id="display"></div>
+  </div>
+</section>
+
+<section id="map">
+  <h2 class="section-title"><span class="badge">地圖</span>香港能源演化地圖</h2>
+  <div class="map">
+    <div class="node">
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_factory.jpg" alt="煤氣廠儲氣庫" loading="lazy">
+      <div class="node-body"><h3>① 煤氣廠</h3><p>能源來源：煤氣由煤提煉，經儲氣庫儲存，再輸送到城市各處。</p></div>
+    </div>
+    <div class="node">
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg" alt="中環都爹利街煤氣燈" loading="lazy">
+      <div class="node-body"><h3>② 城市管網</h3><p>工程設計：地下管道網絡將煤氣送到街道同每一戶家庭。</p></div>
+    </div>
+    <div class="node">
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg" alt="1952 年廚房" loading="lazy">
+      <div class="node-body"><h3>③ 住宅</h3><p>生活改變：煤氣入屋，煮食、熱水、暖氣——生活質素大躍進。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2 class="section-title"><span class="badge">圖片</span>歷史圖片廊</h2>
+  <div class="gallery">
+    <figure>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg" alt="中環都爹利街石階煤氣燈" loading="lazy">
+      <figcaption><b>中環都爹利街煤氣燈</b>香港碩果僅存嘅煤氣街燈，1967 年後仍以煤氣供電照明，見證百年城市照明史。</figcaption>
+    </figure>
+    <figure>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_factory.jpg" alt="香港中華煤氣馬頭角儲氣庫" loading="lazy">
+      <figcaption><b>煤氣儲氣庫（馬頭角）</b>香港中華煤氣公司嘅標誌性圓形儲氣庫，係城市能源基建嘅地標。</figcaption>
+    </figure>
+    <figure>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg" alt="1952 年家庭廚房" loading="lazy">
+      <figcaption><b>1952 年廚房</b>煤氣爐進入家庭，煮食由柴火時代走向清潔、快捷嘅煤氣時代。</figcaption>
+    </figure>
+    <figure class="wide">
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/old_hk_street.jpg" alt="1972 年香港街道" loading="lazy">
+      <figcaption><b>1972 年香港街景</b>舊日香港街道——招牌林立、電車穿行。城市發展背後，能源網絡一直默默支撐。</figcaption>
+    </figure>
+    <figure>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/smart_energy.jpg" alt="太陽能板——智慧能源" loading="lazy">
+      <figcaption><b>智慧能源城市</b>太陽能板等再生能源，同煤氣管網互相配合，走向低碳未來。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="game">
+  <h2 class="section-title"><span class="badge">任務</span>城市工程師任務</h2>
+  <div class="museum-card">
+    <p>你係「1862 香港城市工程師」——要為香港設計能源系統。選擇方案，睇吓你嘅決定會點影響城市：</p>
+    <div class="game-btns">
+      <button onclick="game('wood')">🔥 柴火</button>
+      <button onclick="game('gas')">💡 煤氣</button>
+      <button onclick="game('ai')">🤖 AI 智慧能源</button>
+    </div>
+    <div id="score"></div>
+  </div>
+</section>
+
+<section id="stem">
+  <h2 class="section-title"><span class="badge">STEM</span>跨學科展示</h2>
+  <div class="grid">
+    <div><h3>🔬 Science</h3>燃燒、能源轉換、化學原理——煤氣點樣由煤提煉成可用能源。</div>
+    <div><h3>🛠 Engineering</h3>煤氣管網同城市規劃——管道鋪設、壓力控制、安全設計。</div>
+    <div><h3>💻 Technology</h3>智慧能源管理——智能錶、物聯網感應、AI 調度。</div>
+    <div><h3>🎨 Art</h3>設計未來香港——將能源、城市同生活美學結合。</div>
+  </div>
+</section>
+
+<section id="badge">
+  <h2 class="section-title"><span class="badge">徽章</span>學習徽章</h2>
+  <div class="badge">
+    完成展館探索，集齊三大徽章：
+    <br><b>🔥 能源探索家</b> —— 認識煤氣點樣改變城市
+    <br><b>🏙 城市工程師</b> —— 完成能源系統任務
+    <br><b>🌱 綠色未來設計師</b> —— 構想智慧能源城市藍圖
+  </div>
+</section>
+
+<footer id="credits">
+  <p>🔗 <a href="https://forumdata-collab.github.io/" target="_blank">返回主頁</a> · 香港煤氣足跡 STEAM 教育展館</p>
+  <p class="credit">圖片來源：Wikimedia Commons（CC BY-SA / CC BY / 公有領域授權，僅供教育用途）：中環都爹利街煤氣燈（CC BY-SA 4.0）· 煤氣儲氣庫（CC BY-SA 4.0）· 1972 香港街景（CC BY 2.0）· 1952 廚房（公有領域）· 太陽能板（CC BY-SA 4.0）</p>
+  <p class="credit">資料整理：由公開歷史資料及 Wikimedia Commons 整理，適合個人學習及非商業教育使用 ｜ 製作日期：2026 年 8 月</p>
+  <div class="kofi-bar">
+    <a class="kofi-btn" href="https://ko-fi.com/forumdata" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.47.06 8.529-1.723 8.649-4.916zm-11.638 8.978c-2.252 0-4.078-1.826-4.078-4.078s1.826-4.078 4.078-4.078 4.078 1.826 4.078 4.078-4.078 4.078z"/></svg>
+      ☕ 請我飲杯咖啡
+    </a>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="返回頂部" title="返回頂部">▲</button>
+
+<script>
+// ===== 年代展館 =====
+const ERA = {
+  "1862": {
+    title: "1862 煤氣燈年代",
+    text: "1862 年 12 月，香港島中環街頭點起第一盞煤氣街燈——香港正式踏入煤氣時代。煤氣燈比油燈更光、更穩定、更安全，令夜間街道不再漆黑，城市治安同商業活動都得以提升。",
+    text2: "今日中環都爹利街石階上，仍然保留住全港碩果僅存嘅四盞煤氣燈，由煤氣公司持續供應煤氣、悉心保養——一盞燈，點亮咗香港現代城市發展嘅起點。",
+    img: "https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg",
+    facts: [["1862", "首盞煤氣街燈點亮中環"], ["4 盞", "都爹利街僅存煤氣燈"], ["160+ 年", "煤氣服務香港歷史"]]
+  },
+  "1950": {
+    title: "1950 家庭能源革命",
+    text: "踏入 1950 年代，煤氣由街道走入家庭。煤氣爐、煤氣熱水爐相繼普及，煮食唔再需要生柴火、煲水唔再要燒柴——家庭生活從此更乾淨、更快捷、更安全。",
+    text2: "煤氣入屋，唔單止改變咗煮食方式，更加改變咗香港人嘅生活節奏同城市形態：樓宇可以起得更高更密，因為能源網絡可以穩定供應到每一層每一戶。",
+    img: "https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg",
+    facts: [["1950s", "煤氣爐入屋普及"], ["煮食", "由柴火轉向清潔能源"], ["管網", "能源送到每一戶"]]
+  },
+  "2026": {
+    title: "2026 智慧能源城市",
+    text: "今日嘅香港，煤氣同再生能源並行：智能煤氣錶實時監測用量、物聯網感應器管理管網壓力、AI 協助預測同調度能源需求，減少浪費。",
+    text2: "太陽能板、氫能等新技術逐步加入城市能源組合。由 1862 年嘅一盞煤氣燈開始，香港正走向一個更低碳、更智慧嘅能源未來。",
+    img: "https://img.hermesagent.de5.net/hk-gas/images/smart_energy.jpg",
+    facts: [["智能錶", "實時監測能源用量"], ["AI 調度", "預測城市能源需求"], ["低碳", "再生能源並行發展"]]
+  }
+};
+function showEra(y){
+  const e = ERA[y];
+  const d = document.getElementById("display");
+  d.style.display = "block";
+  d.innerHTML =
+    '<div class="era-panel"><h3>🕰 ' + e.title + '</h3>' +
+    '<img src="' + e.img + '" alt="' + e.title + '" loading="lazy">' +
+    '<p>' + e.text + '</p><p>' + e.text2 + '</p>' +
+    '<div class="era-facts">' + e.facts.map(f =>
+      '<div><b>' + f[0] + '</b>' + f[1] + '</div>').join("") +
+    '</div></div>';
+  document.getElementById("display").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+// ===== 工程師任務 =====
+const GAME = {
+  "wood": {
+    verdict: "再思考：柴火效率低、煙塵多，城市會好快烏煙瘴氣。",
+    score: "能源效率 ★☆☆ | 城市安全 ★☆☆ | 發展影響 ★☆☆",
+    detail: "柴火雖然易得，但燃燒效率低、產生大量煙塵，密集城市好難承受。"
+  },
+  "gas": {
+    verdict: "🏅 正確！煤氣係當時最適合香港城市嘅選擇。",
+    score: "能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
+    detail: "煤氣燈更光更穩定，街道安全提升；中央供氣網絡更為日後工業同家庭能源奠定基礎。"
+  },
+  "ai": {
+    verdict: "🌱 未來方案！AI 智慧能源降低浪費，係明日嘅方向。",
+    score: "能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
+    detail: "智能感應 + AI 調度可以實時平衡供應同需求，減少能源浪費——不過喺 1862 年，技術仲未出現。"
+  }
+};
+function game(x){
+  const g = GAME[x];
+  const s = document.getElementById("score");
+  s.style.display = "block";
+  s.innerHTML = '<div class="verdict">' + g.verdict + '</div>' +
+    '<h4>城市影響評估</h4><ul>' + g.score.split("|").map(t => "<li>" + t.trim() + "</li>").join("") + '</ul>' +
+    '<p style="margin-top:8px">' + g.detail + '</p>';
+}
+
+// ===== 返回頂部 =====
+const btt = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+  btt.classList.toggle("show", window.scrollY > 600);
+}, {passive:true});
+btt.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+</script>
+</body>
+</html>
