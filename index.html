@@ -359,7 +359,7 @@ function startBoil(){
     let bar=document.getElementById(f.id);
     let tid=document.getElementById("t"+(i+1));
     bar.style.width="0%"; bar.style.background=f.color;
-    let start=Date.now(),dur=f.sec*50; // 50x speed = 960s boil in ~19.2s
+    let start=Date.now(),dur=f.sec*15; // 15x speed = whole race ~15s
     function tick(){
       let el=(Date.now()-start)/1000;
       let pct=Math.min(100,el/dur*100);
