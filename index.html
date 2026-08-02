@@ -14,29 +14,26 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 @media(max-width:640px){html{scroll-padding-top:170px}}
-body{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;background:var(--paper);color:var(--ink);line-height:1.8}
+body{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;background:var(--paper);color:var(--ink);line-height:1.8;position:relative}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:url('https://img.hermesagent.de5.net/hk-gas/images/bg_tile.jpg') repeat;background-size:300px;opacity:0.06}
 a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 
-/* ===== 頂部導覽（sticky） ===== */
 .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;background:rgba(243,236,221,0.95);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:100;backdrop-filter:blur(4px)}
 .nav a{padding:5px 13px;border-radius:20px;font-size:13.5px;text-decoration:none;background:var(--paper2);border:1px solid var(--ink);color:var(--ink);transition:all .2s}
 .nav a:hover{background:var(--ink);color:var(--paper2)}
 
-/* ===== 頁首 ===== */
 header{text-align:center;padding:56px 20px 40px;background:linear-gradient(180deg,#eee4d1,var(--paper));border-bottom:3px solid var(--ink)}
 header img{width:150px;margin-bottom:14px}
 h1{font-size:52px;letter-spacing:10px;font-weight:800;margin-bottom:6px}
 .sub-title{font-size:20px;color:var(--ink-dim);letter-spacing:4px;margin-bottom:14px}
 .tagline{font-size:15px;color:var(--ink-dim);max-width:640px;margin:0 auto}
 
-/* ===== 區段 ===== */
 section{max-width:1100px;margin:44px auto;padding:0 20px}
 .section-title{font-size:28px;margin-bottom:22px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:10px}
 .section-title .badge{background:var(--ink);color:var(--paper2);font-size:12px;padding:3px 12px;border-radius:4px;letter-spacing:2px}
 
 .museum-card{background:var(--card-bg);border:2.5px solid var(--line);padding:32px;box-shadow:8px 8px var(--shadow);border-radius:2px}
 
-/* ===== 展館入口 ===== */
 .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
 .rooms button{font-family:inherit;font-size:17px;padding:22px 12px;background:var(--ink);color:var(--paper2);border:none;cursor:pointer;border-radius:2px;box-shadow:5px 5px var(--shadow);transition:transform .15s}
 .rooms button:hover{transform:translateY(-3px);background:#0d2b47}
@@ -46,11 +43,11 @@ section{max-width:1100px;margin:44px auto;padding:0 20px}
 .era-panel h3{font-size:22px;margin-bottom:10px}
 .era-panel p{margin-bottom:10px}
 .era-panel img{width:100%;max-height:320px;object-fit:cover;border:2px solid var(--ink);margin:12px 0;display:block}
+.era-panel .bw-tag{font-size:11px;background:#222;color:#eee;padding:2px 8px;display:inline-block;margin-bottom:6px}
 .era-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
 .era-facts div{background:var(--paper);border:1.5px solid var(--ink);padding:10px;text-align:center;font-size:13.5px}
 .era-facts b{display:block;font-size:16px}
 
-/* ===== 演化地圖 ===== */
 .map{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
 .map .node{background:var(--card-bg);border:2px solid var(--ink);box-shadow:5px 5px var(--shadow);overflow:hidden}
 .map .node img{width:100%;height:150px;object-fit:cover;border-bottom:2px solid var(--ink);display:block}
@@ -58,7 +55,6 @@ section{max-width:1100px;margin:44px auto;padding:0 20px}
 .map .node h3{font-size:17px;margin-bottom:6px}
 .map .node p{font-size:13.5px;color:var(--ink-dim)}
 
-/* ===== 圖片廊 ===== */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .gallery figure{background:var(--card-bg);border:2px solid var(--ink);box-shadow:5px 5px var(--shadow);margin:0}
 .gallery img{width:100%;height:190px;object-fit:cover;border-bottom:2px solid var(--ink);display:block}
@@ -66,7 +62,6 @@ section{max-width:1100px;margin:44px auto;padding:0 20px}
 .gallery figcaption b{color:var(--ink);display:block;margin-bottom:4px}
 .gallery .wide{grid-column:span 2}
 
-/* ===== 任務 ===== */
 .game-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
 .game-btns button{font-family:inherit;font-size:17px;padding:18px;background:var(--ink);color:var(--paper2);border:none;cursor:pointer;border-radius:2px;transition:transform .15s}
 .game-btns button:hover{transform:translateY(-3px)}
@@ -75,22 +70,41 @@ section{max-width:1100px;margin:44px auto;padding:0 20px}
 #score ul{margin-left:22px}
 #score .verdict{font-size:17px;font-weight:700;margin-bottom:8px}
 
-/* ===== STEM ===== */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .grid div{background:var(--card-bg);border:2px solid var(--ink);padding:18px;box-shadow:4px 4px var(--shadow);font-size:13.5px}
 .grid h3{font-size:16px;margin-bottom:6px;color:var(--ink)}
 
-/* ===== 徽章 ===== */
 .badge{background:var(--card-bg);border:2.5px solid var(--ink);padding:26px;box-shadow:8px 8px var(--shadow);font-size:15px}
 .badge b{color:var(--gold);font-size:18px}
 
-/* ===== footer ===== */
+/* ===== STEM 實驗室 ===== */
+.lab{background:var(--card-bg);border:2.5px solid var(--ink);padding:28px;box-shadow:8px 8px var(--shadow)}
+.lab-tabs{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.lab-tab{font-family:inherit;font-size:14px;padding:8px 16px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;border-radius:2px;transition:all .2s}
+.lab-tab.active{background:var(--ink);color:var(--paper2)}
+.lab-experiment{display:none}
+.lab-experiment.active{display:block}
+.boil-race{position:relative;margin:16px 0}
+.boiler{display:flex;align-items:center;gap:10px;margin:10px 0;padding:10px;border:1.5px solid var(--ink);background:var(--paper)}
+.boiler .fuel-label{width:90px;font-weight:700;font-size:14px;text-align:center}
+.boiler .bar-bg{flex:1;height:28px;background:#e8dfd0;border:1.5px solid var(--ink);position:relative;overflow:hidden;border-radius:2px}
+.boiler .bar-fill{height:100%;width:0%;transition:width 0.1s linear;border-radius:2px}
+.boiler .time{width:70px;font-size:13px;text-align:right}
+.start-btn{font-family:inherit;padding:14px 32px;background:var(--ink);color:var(--paper2);border:none;font-size:17px;cursor:pointer;border-radius:2px;box-shadow:4px 4px var(--shadow);transition:transform .15s}
+.start-btn:hover{transform:translateY(-2px)}
+.boil-result{font-size:16px;margin-top:14px;font-weight:700;display:none}
+.slider-wrap{margin:20px 0}
+.slider-wrap input[type=range]{width:100%;accent-color:var(--ink)}
+.flame-display{text-align:center;padding:20px;margin:10px 0;border:2px solid var(--ink);background:var(--paper);box-shadow:4px 4px var(--shadow)}
+.flame-display .temp{font-size:36px;font-weight:800}
+.flame-display .fuel-name{font-size:15px;margin-top:4px}
+.flame-display .fact{font-size:13px;color:var(--ink-dim);margin-top:8px;max-width:600px;margin-left:auto;margin-right:auto}
+
 footer{text-align:center;padding:36px 20px 10px;border-top:3px solid var(--ink);margin-top:50px;background:#eee4d1;font-size:13.5px;color:var(--ink-dim)}
 footer .credit{margin-top:10px;font-size:12px}
 .kofi-bar{text-align:center;padding-top:22px;margin-top:16px;border-top:1px solid var(--ink);padding-bottom:6px}
 .kofi-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:#ff5e5b;color:#fff !important;text-decoration:none;border-radius:8px;font-weight:600;font-size:15px;font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif}
 
-/* ===== 返回頂部 ===== */
 #backToTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--paper2);border:2px solid var(--gold);font-size:19px;cursor:pointer;display:none;z-index:200;font-family:inherit}
 #backToTop.show{display:block}
 
@@ -112,6 +126,7 @@ footer .credit{margin-top:10px;font-size:12px}
   <a href="#map">能源演化地圖</a>
   <a href="#gallery">歷史圖片廊</a>
   <a href="#game">工程師任務</a>
+  <a href="#lab">🔬 實驗室</a>
   <a href="#stem">STEM 展示</a>
   <a href="#badge">學習徽章</a>
   <a href="#credits">資料來源</a>
@@ -124,6 +139,7 @@ footer .credit{margin-top:10px;font-size:12px}
   <p class="tagline">從第一盞煤氣燈，到智慧能源城市。一盞煤氣燈，點亮香港現代城市的起點。</p>
 </header>
 
+<!-- ==================== 虛擬展館 ==================== -->
 <section id="museum">
   <h2 class="section-title"><span class="badge">展館</span>虛擬展館入口</h2>
   <div class="museum-card">
@@ -137,50 +153,53 @@ footer .credit{margin-top:10px;font-size:12px}
   </div>
 </section>
 
+<!-- ==================== 能源演化地圖 ==================== -->
 <section id="map">
   <h2 class="section-title"><span class="badge">地圖</span>香港能源演化地圖</h2>
   <div class="map">
     <div class="node">
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_factory.jpg" alt="煤氣廠儲氣庫" loading="lazy">
-      <div class="node-body"><h3>① 煤氣廠</h3><p>能源來源：煤氣由煤提煉，經儲氣庫儲存，再輸送到城市各處。</p></div>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gasworks_historic.jpg" alt="歷史煤氣廠蒸餾車間" loading="lazy">
+      <div class="node-body"><h3>① 煤氣廠</h3><p>能源來源：煤喺蒸餾車間加熱產生煤氣，經儲氣庫儲存，再由管網輸出。</p></div>
     </div>
     <div class="node">
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg" alt="中環都爹利街煤氣燈" loading="lazy">
-      <div class="node-body"><h3>② 城市管網</h3><p>工程設計：地下管道網絡將煤氣送到街道同每一戶家庭。</p></div>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_pipeline.jpg" alt="煤氣管道鋪設" loading="lazy">
+      <div class="node-body"><h3>② 城市管網</h3><p>工程設計：地下鑄鐵管道貫穿城市街道，將煤氣送到街燈、工廠同每一戶。</p></div>
     </div>
     <div class="node">
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg" alt="1952 年廚房" loading="lazy">
-      <div class="node-body"><h3>③ 住宅</h3><p>生活改變：煤氣入屋，煮食、熱水、暖氣——生活質素大躍進。</p></div>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_cooker_vintage.jpg" alt="古董煤氣爐" loading="lazy">
+      <div class="node-body"><h3>③ 住宅</h3><p>生活改變：煤氣爐入屋，煮食由柴火走向乾淨快捷嘅煤氣時代。</p></div>
     </div>
   </div>
 </section>
 
+<!-- ==================== 歷史圖片廊 ==================== -->
 <section id="gallery">
   <h2 class="section-title"><span class="badge">圖片</span>歷史圖片廊</h2>
   <div class="gallery">
     <figure>
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg" alt="中環都爹利街石階煤氣燈" loading="lazy">
-      <figcaption><b>中環都爹利街煤氣燈</b>香港碩果僅存嘅煤氣街燈，1967 年後仍以煤氣供電照明，見證百年城市照明史。</figcaption>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/hk_duddell_1900.jpg" alt="1900 年都爹利街歷史照片" loading="lazy">
+      <figcaption><b>都爹利街歷史照（約 1900 年）</b>煤氣燈照亮維多利亞城嘅夜晚，中環成為當時最先進嘅現代化街道。</figcaption>
     </figure>
     <figure>
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_factory.jpg" alt="香港中華煤氣馬頭角儲氣庫" loading="lazy">
-      <figcaption><b>煤氣儲氣庫（馬頭角）</b>香港中華煤氣公司嘅標誌性圓形儲氣庫，係城市能源基建嘅地標。</figcaption>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gasworks_historic.jpg" alt="煤氣廠蒸餾車間" loading="lazy">
+      <figcaption><b>煤氣廠蒸餾車間</b>煤炭喺密封蒸餾器中加熱，釋放出煤氣——城市能源嘅源頭。</figcaption>
     </figure>
     <figure>
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg" alt="1952 年家庭廚房" loading="lazy">
-      <figcaption><b>1952 年廚房</b>煤氣爐進入家庭，煮食由柴火時代走向清潔、快捷嘅煤氣時代。</figcaption>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/gas_cooker_vintage.jpg" alt="古董煤氣爐" loading="lazy">
+      <figcaption><b>古董煤氣爐</b>由街頭走入廚房，煤氣爐令家庭生活告別柴火煙塵。</figcaption>
     </figure>
     <figure class="wide">
-      <img src="https://img.hermesagent.de5.net/hk-gas/images/old_hk_street.jpg" alt="1972 年香港街道" loading="lazy">
-      <figcaption><b>1972 年香港街景</b>舊日香港街道——招牌林立、電車穿行。城市發展背後，能源網絡一直默默支撐。</figcaption>
+      <img src="https://img.hermesagent.de5.net/hk-gas/images/old_hk_street.jpg" alt="1972 年香港街景" loading="lazy">
+      <figcaption><b>1972 年香港街景</b>舊日香港街道——招牌林立、電車穿行。城市發展背後，能源網絡默默支撐。</figcaption>
     </figure>
     <figure>
       <img src="https://img.hermesagent.de5.net/hk-gas/images/smart_energy.jpg" alt="太陽能板——智慧能源" loading="lazy">
-      <figcaption><b>智慧能源城市</b>太陽能板等再生能源，同煤氣管網互相配合，走向低碳未來。</figcaption>
+      <figcaption><b>智慧能源城市</b>太陽能板等再生能源，與煤氣管網互相配合，邁向低碳香港。</figcaption>
     </figure>
   </div>
 </section>
 
+<!-- ==================== 工程師任務 ==================== -->
 <section id="game">
   <h2 class="section-title"><span class="badge">任務</span>城市工程師任務</h2>
   <div class="museum-card">
@@ -194,6 +213,49 @@ footer .credit{margin-top:10px;font-size:12px}
   </div>
 </section>
 
+<!-- ==================== STEM 實驗室 ==================== -->
+<section id="lab">
+  <h2 class="section-title"><span class="badge">實驗</span>🔬 煤氣科學實驗室</h2>
+  <div class="lab">
+    <div class="lab-tabs">
+      <button class="lab-tab active" onclick="switchLab('boil')">🧪 煮水比賽</button>
+      <button class="lab-tab" onclick="switchLab('flame')">🔥 火焰溫度探索器</button>
+    </div>
+
+    <!-- 煮水比賽 -->
+    <div class="lab-experiment active" id="boil">
+      <p><b>實驗目標：</b>比較不同燃料嘅加熱效率——睇邊種最快把水煮沸（100°C）。</p>
+      <p style="font-size:13px;color:var(--ink-dim)">水溫從 20°C 開始，同時起跑。</p>
+      <div class="boil-race">
+        <div class="boiler"><div class="fuel-label">🔥 柴火</div><div class="bar-bg"><div class="bar-fill" id="b1" style="background:#8B4513"></div></div><div class="time" id="t1">--</div></div>
+        <div class="boiler"><div class="fuel-label">💡 煤氣</div><div class="bar-bg"><div class="bar-fill" id="b2" style="background:#2272b0"></div></div><div class="time" id="t2">--</div></div>
+        <div class="boiler"><div class="fuel-label">⚡ 電磁爐</div><div class="bar-bg"><div class="bar-fill" id="b3" style="background:#7c3aed"></div></div><div class="time" id="t3">--</div></div>
+        <div class="boiler"><div class="fuel-label">💨 氫能</div><div class="bar-bg"><div class="bar-fill" id="b4" style="background:#16a34a"></div></div><div class="time" id="t4">--</div></div>
+      </div>
+      <button class="start-btn" id="boilStart" onclick="startBoil()">▶ 起步！</button>
+      <div class="boil-result" id="boilResult"></div>
+    </div>
+
+    <!-- 火焰溫度探索器 -->
+    <div class="lab-experiment" id="flame">
+      <p><b>拖動滑桿</b>選擇燃料，睇火焰顏色同溫度變化：</p>
+      <div class="slider-wrap">
+        <input type="range" id="flameSlider" min="0" max="4" value="0" oninput="updateFlame(this.value)">
+      </div>
+      <div class="flame-display" id="flameDisplay">
+        <div style="font-size:72px" id="flameEmoji">🕯️</div>
+        <div class="temp" id="flameTemp">~400°C</div>
+        <div class="fuel-name" id="flameName">柴火</div>
+        <div class="fact" id="flameFact">柴火火焰呈橙紅色，溫度約 400–600°C。1862 年之前，香港人靠燒柴照明同煮食。</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-dim);margin-top:4px">
+        <span>🕯️ 柴火</span><span>💡 煤氣</span><span>🔵 酒精燈</span><span>⚡ 電磁爐</span><span>💨 氫能</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STEM 展示 ==================== -->
 <section id="stem">
   <h2 class="section-title"><span class="badge">STEM</span>跨學科展示</h2>
   <div class="grid">
@@ -204,6 +266,7 @@ footer .credit{margin-top:10px;font-size:12px}
   </div>
 </section>
 
+<!-- ==================== 學習徽章 ==================== -->
 <section id="badge">
   <h2 class="section-title"><span class="badge">徽章</span>學習徽章</h2>
   <div class="badge">
@@ -211,12 +274,13 @@ footer .credit{margin-top:10px;font-size:12px}
     <br><b>🔥 能源探索家</b> —— 認識煤氣點樣改變城市
     <br><b>🏙 城市工程師</b> —— 完成能源系統任務
     <br><b>🌱 綠色未來設計師</b> —— 構想智慧能源城市藍圖
+    <br><b>🧪 科學實驗員</b> —— 完成實驗室挑戰
   </div>
 </section>
 
 <footer id="credits">
   <p>🔗 <a href="https://forumdata-collab.github.io/" target="_blank">返回主頁</a> · 香港煤氣足跡 STEAM 教育展館</p>
-  <p class="credit">圖片來源：Wikimedia Commons（CC BY-SA / CC BY / 公有領域授權，僅供教育用途）：中環都爹利街煤氣燈（CC BY-SA 4.0）· 煤氣儲氣庫（CC BY-SA 4.0）· 1972 香港街景（CC BY 2.0）· 1952 廚房（公有領域）· 太陽能板（CC BY-SA 4.0）</p>
+  <p class="credit">圖片來源：Wikimedia Commons（CC BY-SA / CC BY / 公有領域，僅供教育用途）· 歷史照片：都爹利街 1900 年（公有領域）· 煤氣廠蒸餾車間（公有領域）· 古董煤氣爐（CC BY-SA 4.0）· 背景圖案：中華煤氣公司素材</p>
   <p class="credit">資料整理：由公開歷史資料及 Wikimedia Commons 整理，適合個人學習及非商業教育使用 ｜ 製作日期：2026 年 8 月</p>
   <div class="kofi-bar">
     <a class="kofi-btn" href="https://ko-fi.com/forumdata" target="_blank">
@@ -229,77 +293,115 @@ footer .credit{margin-top:10px;font-size:12px}
 <button id="backToTop" aria-label="返回頂部" title="返回頂部">▲</button>
 
 <script>
-// ===== 年代展館 =====
-const ERA = {
-  "1862": {
-    title: "1862 煤氣燈年代",
-    text: "1862 年 12 月，香港島中環街頭點起第一盞煤氣街燈——香港正式踏入煤氣時代。煤氣燈比油燈更光、更穩定、更安全，令夜間街道不再漆黑，城市治安同商業活動都得以提升。",
-    text2: "今日中環都爹利街石階上，仍然保留住全港碩果僅存嘅四盞煤氣燈，由煤氣公司持續供應煤氣、悉心保養——一盞燈，點亮咗香港現代城市發展嘅起點。",
-    img: "https://img.hermesagent.de5.net/hk-gas/images/1862_gas_lamp.jpg",
-    facts: [["1862", "首盞煤氣街燈點亮中環"], ["4 盞", "都爹利街僅存煤氣燈"], ["160+ 年", "煤氣服務香港歷史"]]
-  },
-  "1950": {
-    title: "1950 家庭能源革命",
-    text: "踏入 1950 年代，煤氣由街道走入家庭。煤氣爐、煤氣熱水爐相繼普及，煮食唔再需要生柴火、煲水唔再要燒柴——家庭生活從此更乾淨、更快捷、更安全。",
-    text2: "煤氣入屋，唔單止改變咗煮食方式，更加改變咗香港人嘅生活節奏同城市形態：樓宇可以起得更高更密，因為能源網絡可以穩定供應到每一層每一戶。",
-    img: "https://img.hermesagent.de5.net/hk-gas/images/kitchen_1952.jpg",
-    facts: [["1950s", "煤氣爐入屋普及"], ["煮食", "由柴火轉向清潔能源"], ["管網", "能源送到每一戶"]]
-  },
-  "2026": {
-    title: "2026 智慧能源城市",
-    text: "今日嘅香港，煤氣同再生能源並行：智能煤氣錶實時監測用量、物聯網感應器管理管網壓力、AI 協助預測同調度能源需求，減少浪費。",
-    text2: "太陽能板、氫能等新技術逐步加入城市能源組合。由 1862 年嘅一盞煤氣燈開始，香港正走向一個更低碳、更智慧嘅能源未來。",
-    img: "https://img.hermesagent.de5.net/hk-gas/images/smart_energy.jpg",
-    facts: [["智能錶", "實時監測能源用量"], ["AI 調度", "預測城市能源需求"], ["低碳", "再生能源並行發展"]]
-  }
+/* ===== 年代展館 ===== */
+const ERA={
+  "1862":{title:"1862 煤氣燈年代",bw:true,
+    img:"https://img.hermesagent.de5.net/hk-gas/images/hk_duddell_1900.jpg",
+    text:"1862 年 12 月，香港島中環街頭點起第一盞煤氣街燈——香港正式踏入煤氣時代。煤氣燈比油燈更光更穩定，夜間街道不再漆黑，城市治安同商業得以提升。",
+    text2:"今日中環都爹利街石階上仍保留全港僅存四盞煤氣燈，由煤氣公司持續供應煤氣、悉心保養——一盞燈，點亮咗香港現代城市發展嘅起點。",
+    facts:[["1862","首盞煤氣街燈點亮中環"],["4 盞","都爹利街僅存煤氣燈"],["160+ 年","煤氣服務香港歷史"]]},
+  "1950":{title:"1950 家庭能源革命",
+    img:"https://img.hermesagent.de5.net/hk-gas/images/gas_cooker_vintage.jpg",
+    text:"踏入 1950 年代，煤氣由街道走入家庭。煤氣爐、煤氣熱水爐相繼普及，煮食唔再需要生柴火——家庭生活從此更乾淨更快捷更安全。",
+    text2:"煤氣入屋改變咗煮食方式，更加改變咗香港人嘅生活節奏同城市形態：樓宇可以起得更高更密，因為能源網絡穩定供應到每一層每一戶。",
+    facts:[["1950s","煤氣爐入屋普及"],["煮食","由柴火轉向清潔能源"],["管網","能源送到每一戶"]]},
+  "2026":{title:"2026 智慧能源城市",
+    img:"https://img.hermesagent.de5.net/hk-gas/images/smart_energy.jpg",
+    text:"今日嘅香港，煤氣同再生能源並行：智能煤氣錶實時監測用量、物聯網感應器管理管網壓力、AI 協助預測同調度能源需求，減少浪費。",
+    text2:"太陽能板、氫能等新技術逐步加入城市能源組合。由 1862 年嘅一盞煤氣燈開始，香港正走向更低碳更智慧嘅能源未來。",
+    facts:[["智能錶","實時監測能源用量"],["AI 調度","預測城市能源需求"],["低碳","再生能源並行發展"]]}
 };
 function showEra(y){
-  const e = ERA[y];
-  const d = document.getElementById("display");
-  d.style.display = "block";
-  d.innerHTML =
-    '<div class="era-panel"><h3>🕰 ' + e.title + '</h3>' +
-    '<img src="' + e.img + '" alt="' + e.title + '" loading="lazy">' +
-    '<p>' + e.text + '</p><p>' + e.text2 + '</p>' +
-    '<div class="era-facts">' + e.facts.map(f =>
-      '<div><b>' + f[0] + '</b>' + f[1] + '</div>').join("") +
-    '</div></div>';
-  document.getElementById("display").scrollIntoView({behavior:"smooth", block:"nearest"});
+  const e=ERA[y],d=document.getElementById("display");
+  d.style.display="block";
+  d.innerHTML='<div class="era-panel"><h3>🕰 '+e.title+'</h3>'+
+    (e.bw?'<div class="bw-tag">📷 歷史黑白照片（約 1900 年）</div>':'')+
+    '<img src="'+e.img+'" alt="'+e.title+'" loading="lazy">'+
+    '<p>'+e.text+'</p><p>'+e.text2+'</p>'+
+    '<div class="era-facts">'+e.facts.map(f=>'<div><b>'+f[0]+'</b>'+f[1]+'</div>').join("")+'</div></div>';
+  document.getElementById("display").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-// ===== 工程師任務 =====
-const GAME = {
-  "wood": {
-    verdict: "再思考：柴火效率低、煙塵多，城市會好快烏煙瘴氣。",
-    score: "能源效率 ★☆☆ | 城市安全 ★☆☆ | 發展影響 ★☆☆",
-    detail: "柴火雖然易得，但燃燒效率低、產生大量煙塵，密集城市好難承受。"
-  },
-  "gas": {
-    verdict: "🏅 正確！煤氣係當時最適合香港城市嘅選擇。",
-    score: "能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
-    detail: "煤氣燈更光更穩定，街道安全提升；中央供氣網絡更為日後工業同家庭能源奠定基礎。"
-  },
-  "ai": {
-    verdict: "🌱 未來方案！AI 智慧能源降低浪費，係明日嘅方向。",
-    score: "能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",
-    detail: "智能感應 + AI 調度可以實時平衡供應同需求，減少能源浪費——不過喺 1862 年，技術仲未出現。"
-  }
+/* ===== 工程師任務 ===== */
+const GAME={
+  wood:{verdict:"再思考：柴火效率低、煙塵多，城市好快烏煙瘴氣。",score:"能源效率 ★☆☆ | 城市安全 ★☆☆ | 發展影響 ★☆☆",detail:"柴火雖然易得，但燃燒效率低、產生大量煙塵，密集城市好難承受。"},
+  gas:{verdict:"🏅 正確！煤氣係當時最適合香港城市嘅選擇。",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",detail:"煤氣燈更光更穩定，街道安全提升；中央供氣網絡更為日後工業同家庭能源奠定基礎。"},
+  ai:{verdict:"🌱 未來方案！AI 智慧能源降低浪費，係明日嘅方向。",score:"能源效率 ★★★ | 城市安全 ★★★ | 發展影響 ★★★",detail:"智能感應 + AI 調度可以實時平衡供應同需求，減少能源浪費——不過喺 1862 年，技術仲未出現。"}
 };
 function game(x){
-  const g = GAME[x];
-  const s = document.getElementById("score");
-  s.style.display = "block";
-  s.innerHTML = '<div class="verdict">' + g.verdict + '</div>' +
-    '<h4>城市影響評估</h4><ul>' + g.score.split("|").map(t => "<li>" + t.trim() + "</li>").join("") + '</ul>' +
-    '<p style="margin-top:8px">' + g.detail + '</p>';
+  const g=GAME[x],s=document.getElementById("score");
+  s.style.display="block";
+  s.innerHTML='<div class="verdict">'+g.verdict+'</div><h4>城市影響評估</h4><ul>'+
+    g.score.split("|").map(t=>"<li>"+t.trim()+"</li>").join("")+'</ul><p style="margin-top:8px">'+g.detail+'</p>';
 }
 
-// ===== 返回頂部 =====
-const btt = document.getElementById("backToTop");
-window.addEventListener("scroll", () => {
-  btt.classList.toggle("show", window.scrollY > 600);
-}, {passive:true});
-btt.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+/* ===== STEM 實驗室 — 煮水比賽 ===== */
+const FUELS=[
+  {id:"b1",time:12,color:"#8B4513",sec:960},  // 柴火 16min=960s
+  {id:"b2",time:5, color:"#2272b0",sec:300},   // 煤氣 5min=300s
+  {id:"b3",time:3.5,color:"#7c3aed",sec:210},  // 電磁爐 3.5min=210s
+  {id:"b4",time:2.5,color:"#16a34a",sec:150}   // 氫能 2.5min=150s
+];
+function switchLab(id){
+  document.querySelectorAll(".lab-tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".lab-experiment").forEach(t=>t.classList.remove("active"));
+  document.querySelector('[onclick="switchLab(\''+id+'\')"]').classList.add("active");
+  document.getElementById(id).classList.add("active");
+}
+let boilRunning=false;
+function startBoil(){
+  if(boilRunning)return;
+  boilRunning=true;
+  document.getElementById("boilStart").disabled=true;
+  document.getElementById("boilResult").style.display="none";
+  let done=0;
+  FUELS.forEach((f,i)=>{
+    let bar=document.getElementById(f.id);
+    let tid=document.getElementById("t"+(i+1));
+    bar.style.width="0%"; bar.style.background=f.color;
+    let start=Date.now(),dur=f.sec*50; // 50x speed = 960s boil in ~19.2s
+    function tick(){
+      let el=(Date.now()-start)/1000;
+      let pct=Math.min(100,el/dur*100);
+      bar.style.width=pct+"%";
+      let secs=f.sec*(pct/100);
+      tid.textContent=Math.floor(secs/60)+":"+String(Math.floor(secs%60)).padStart(2,"0");
+      if(pct>=100){done++;
+        let r=document.getElementById("boilResult");
+        r.style.display="block";
+        if(done===4){
+          r.innerHTML="🏁 完成！🏆 <b>氫能最快煮沸（2.5 分鐘）</b>，煤氣第二（5 分鐘）。效率越高，能源浪費越少——呢個就係點解煤氣取代柴火！";
+          boilRunning=false;
+          document.getElementById("boilStart").disabled=false;
+        }return;}
+      requestAnimationFrame(tick);
+    }
+    setTimeout(()=>requestAnimationFrame(tick),i*200); // stagger start
+  });
+}
+
+/* ===== STEM 實驗室 — 火焰溫度探索器 ===== */
+const FLAMES=[
+  {name:"柴火",temp:"~400–600°C",emoji:"🕯️",fact:"柴火火焰呈橙紅色，溫度約 400–600°C。1862 年之前，香港人靠燒柴照明同煮食。燃燒效率低、煙塵大。",bg:"linear-gradient(180deg,#2a1a0a,#8B4513,#d4650a)"},
+  {name:"煤氣",temp:"~800–1,000°C",emoji:"💡",fact:"煤氣火焰呈藍色，溫度約 800–1,000°C。1862 年煤氣入港，取代柴火成為城市主要能源。藍色火焰 = 充分燃燒 = 更乾淨高效。",bg:"linear-gradient(180deg,#0a1a2a,#1565c0,#42a5f5)"},
+  {name:"酒精燈",temp:"~800°C",emoji:"🔵",fact:"酒精燈火焰外焰溫度約 800°C，係實驗室常用加熱工具。火焰呈淡藍色，需要風檔保護。",bg:"linear-gradient(180deg,#0a1a2a,#1e88e5,#90caf9)"},
+  {name:"電磁爐",temp:"~600–800°C",emoji:"⚡",fact:"電磁爐加熱溫度約 600–800°C。利用電磁感應直接加熱鍋底，能源轉換效率高達 90%。",bg:"linear-gradient(180deg,#1a0a2a,#7c3aed,#c4b5fd)"},
+  {name:"氫能燃燒器",temp:"~2,000°C+",emoji:"💨",fact:"氫能燃燒器溫度可達 2,000°C 以上，火焰近乎無色。氫燃料只會產生水蒸氣，零碳排放——係未來城市能源嘅方向。",bg:"linear-gradient(180deg,#0a1a10,#16a34a,#86efac)"}
+];
+function updateFlame(v){
+  const f=FLAMES[v];
+  document.getElementById("flameEmoji").textContent=f.emoji;
+  document.getElementById("flameTemp").textContent=f.temp;
+  document.getElementById("flameName").textContent=f.name;
+  document.getElementById("flameFact").textContent=f.fact;
+  document.getElementById("flameDisplay").style.background=f.bg;
+  document.getElementById("flameDisplay").style.color=v<2?"#fff":(v<4?"#e8e8e8":"#fff");
+}
+
+/* ===== 返回頂部 ===== */
+const btt=document.getElementById("backToTop");
+window.addEventListener("scroll",()=>{btt.classList.toggle("show",window.scrollY>600)},{passive:true});
+btt.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
 </script>
 </body>
 </html>
