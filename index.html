@@ -361,7 +361,7 @@ function startBoil(){
     bar.style.width="0%"; bar.style.background=f.color;
     let start=Date.now(),dur=f.sec*15; // 15x speed = whole race ~15s
     function tick(){
-      let el=(Date.now()-start)/1000;
+      let el=Date.now()-start; // ms elapsed (real) — dur is also ms
       let pct=Math.min(100,el/dur*100);
       bar.style.width=pct+"%";
       let secs=f.sec*(pct/100);
